@@ -9,17 +9,18 @@
         </div>
         <div class="form-group">
             <label>Date Released :- &nbsp;&nbsp;&nbsp;&nbsp;</label>
-            <input type="date" id="birthday" name="birthday">
+            <input type="date" id="datereleased" name="datereleased">
         </div>
         <div class="form-group">
             <label>Artwork &nbsp;&nbsp;&nbsp;&nbsp;</label>
-            <input type="file" id="birthday" name="birthday">
+            <input type="file" id="file" name="file">
         </div>
         <div class="form-group">
-            
+
             <div style="text-align: end;">
-               
-                <button type="submit" class="btn btn-primary">Add Artist</button>
+
+                <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Add
+                    Artist</button>
             </div>
             <h4></h4>
             <label>Artist &nbsp;&nbsp;&nbsp;&nbsp;</label>
@@ -32,8 +33,58 @@
 
 
         </div>
-
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <div style="text-align: center">
+            <button type="button" class="btn btn-info">Cancel</button>
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            <button type="button" class="btn btn-success">Save</button>
+        </div>
     </form>
 </div>
 
+
+
+<!-- Add Artist Modal -->
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Add New Artist</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="container-fluid d-flex">
+                    <form>
+                        <div class="form-group">
+                            <label>Artist Name</label>
+                            <input type="text" class="form-control" id="artist" placeholder="Enter Artist Name">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Date Of Birth :- &nbsp;&nbsp;&nbsp;&nbsp;</label>
+                            <input type="date" id="dateartist" name="dateartist">
+                        </div>
+                        <label>Bio :- &nbsp;&nbsp;&nbsp;&nbsp;</label>
+                        <div class="form-group">
+
+                            <textarea style="padding: 15px 93px;" name="Description" id="Description-contact"
+                                placeholder=" Enter Bio (Max 200 Characters) " autocomplete="off"></textarea>
+
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- End of Artist Modal -->
