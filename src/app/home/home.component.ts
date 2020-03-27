@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
   AddMusic:any;
+  currentRate = 8;
   constructor() { }
 
   ngOnInit() {
@@ -14,5 +15,9 @@ export class HomeComponent implements OnInit {
   }
   addForm(){
     this.AddMusic=true;
+  }
+  clickstars(){
+    console.log(true);
+    
   }
 }
