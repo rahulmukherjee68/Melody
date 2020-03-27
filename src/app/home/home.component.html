@@ -9,34 +9,42 @@
 
 <!-- top 10 Music -->
 
-<div class="container">
+<div class="container" *ngIf="AddMusic==false">
     <h2>Top 10 Music List <small>By Melody</small></h2> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
-    <button type="button" class="btn btn-primary">Primary</button>
+    <button type="button" class="btn btn-primary" (click)="addForm()">Add New Music</button>
+
+
     <h4></h4>
     <ul class="responsive-table">
         <li class="table-header">
-            <div class="col col-1">Job Id</div>
-            <div class="col col-2">Customer Name</div>
-            <div class="col col-3">Amount Due</div>
-            <div class="col col-4">Payment Status</div>
+            <div class="col col-1">Poster</div>
+            <div class="col col-2">Song</div>
+            <div class="col col-3">Date Of Release</div>
+            <div class="col col-4">Artist</div>
+            <div class="col col-4">Rating</div>
         </li>
         <li class="table-row">
             <div class="col col-1" data-label="Job Id">42235</div>
             <div class="col col-2" data-label="Customer Name">John Doe</div>
             <div class="col col-3" data-label="Amount">$350</div>
             <div class="col col-4" data-label="Payment Status">Pending</div>
+            <div class="col col-4" data-label="Payment Status">Pending</div>
+
         </li>
         <li class="table-row">
-            <div class="col col-1" data-label="Job Id">42442</div>
+            <div class="col col-0" data-label="Job Id">42442</div>
             <div class="col col-2" data-label="Customer Name">Jennifer Smith</div>
             <div class="col col-3" data-label="Amount">$220</div>
             <div class="col col-4" data-label="Payment Status">Pending</div>
+            <div class="col col-4" data-label="Payment Status">Pending</div>
+
         </li>
         <li class="table-row">
             <div class="col col-1" data-label="Job Id">42257</div>
             <div class="col col-2" data-label="Customer Name">John Smith</div>
             <div class="col col-3" data-label="Amount">$341</div>
+            <div class="col col-4" data-label="Payment Status">Pending</div>
             <div class="col col-4" data-label="Payment Status">Pending</div>
         </li>
         <li class="table-row">
@@ -44,6 +52,7 @@
             <div class="col col-2" data-label="Customer Name">John Carpenter</div>
             <div class="col col-3" data-label="Amount">$115</div>
             <div class="col col-4" data-label="Payment Status">Pending</div>
+            <div class="col col-4" data-label="Payment Status">Pending</div>    
         </li>
     </ul>
 </div>
@@ -51,41 +60,44 @@
 
 <!-- top 10 artists -->
 
-<div class="container">
+<div class="container" *ngIf="AddMusic==false">
     <h2>Top 10 Artist List <small>By Melody</small></h2> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
-    <button type="button" class="btn btn-primary">Primary</button>
+    <button type="button" class="btn btn-primary">Add New Artist</button>
     <h4></h4>
     <ul class="responsive-table">
         <li class="table-header">
-            <div class="col col-1">Job Id</div>
-            <div class="col col-2">Customer Name</div>
-            <div class="col col-3">Amount Due</div>
-            <div class="col col-4">Payment Status</div>
+            <div class="col col-1">Artist</div>
+            <div class="col col-2">Date Of Birth</div>
+            <div class="col col-3">Songs</div>
+ 
         </li>
         <li class="table-row">
             <div class="col col-1" data-label="Job Id">42235</div>
             <div class="col col-2" data-label="Customer Name">John Doe</div>
             <div class="col col-3" data-label="Amount">$350</div>
-            <div class="col col-4" data-label="Payment Status">Pending</div>
+
         </li>
         <li class="table-row">
             <div class="col col-1" data-label="Job Id">42442</div>
             <div class="col col-2" data-label="Customer Name">Jennifer Smith</div>
             <div class="col col-3" data-label="Amount">$220</div>
-            <div class="col col-4" data-label="Payment Status">Pending</div>
+
         </li>
         <li class="table-row">
             <div class="col col-1" data-label="Job Id">42257</div>
             <div class="col col-2" data-label="Customer Name">John Smith</div>
             <div class="col col-3" data-label="Amount">$341</div>
-            <div class="col col-4" data-label="Payment Status">Pending</div>
+
         </li>
         <li class="table-row">
             <div class="col col-1" data-label="Job Id">42311</div>
             <div class="col col-2" data-label="Customer Name">John Carpenter</div>
             <div class="col col-3" data-label="Amount">$115</div>
-            <div class="col col-4" data-label="Payment Status">Pending</div>
         </li>
     </ul>
+</div>
+
+<div *ngIf="AddMusic==true">
+    <app-add></app-add>
 </div>
