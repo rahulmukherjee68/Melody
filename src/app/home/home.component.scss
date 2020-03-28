@@ -100,3 +100,15 @@ body {
   .stars{
     font-size: x-large;
   }
+
+  .thead-song{
+    background-color: #95A5A6;
+    padding: 7px 13px;
+  }
+
+  .table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {
+    padding: 19px;
+    line-height: 1.42857143;
+    vertical-align: top;
+    border-top: 1px solid #ddd;
+}
