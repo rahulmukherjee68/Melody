@@ -9,6 +9,8 @@ import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { FormsModule }   from '@angular/forms';
 import { AddComponent } from './add/add.component';
+import { AngularMultiSelectModule } from 'angular2-multiselect-dropdown';
+
 
 @NgModule({
   declarations: [
@@ -22,7 +24,8 @@ import { AddComponent } from './add/add.component';
     AppRoutingModule,
     FormsModule,
     NgbModule,
-    HttpClientModule
+    HttpClientModule,
+    AngularMultiSelectModule
   ],
   providers: [],
   bootstrap: [AppComponent]

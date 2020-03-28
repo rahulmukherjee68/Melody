@@ -4,6 +4,11 @@ input[type=date], input[type=datetime-local], input[type=month], input[type=time
     padding: 0px 31px;
     font-size: larger;
 }
+.myclass{
+  
+    font-size: initial;
+
+}
 
 * {
     box-sizing: border-box;
@@ -44,3 +49,14 @@ input[type=date], input[type=datetime-local], input[type=month], input[type=time
     padding: 6px 59px;
 
   }
+  c-btn {
+    width: 100%;
+    padding: 5px 10px;
+    cursor: pointer;
+    display: flex;
+    position: relative;
+   // font-size inline-size: auto;
+    font-size: initial;
+}
+
+ 

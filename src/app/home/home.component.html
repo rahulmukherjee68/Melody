@@ -17,7 +17,83 @@
 
 
     <h4></h4>
-    <!-- <ul class="responsive-table" >
+
+    <table class="table table-striped">
+        <thead class="thead-song">
+            <tr>
+                <th scope="col">Artwork</th>
+                <th scope="col">Song</th>
+                <th scope="col">Date Of Release</th>
+                <th scope="col">Artist</th>
+                <th scope="col">Rating</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let data of songsData|keyvalue">
+                <th scope="row"><img src="http://localhost:3000/{{data.value.song_artwork}}" height="100px"
+                        width="100px" alt=""> </th>
+                <td>{{data.value.song_name}}</td>
+                <td>{{data.value.date_of_release}}</td>
+                <td>
+                    {{artistAppend(data.value.artist)}}
+                </td>
+                <td>
+                    <ngb-rating [max]="5" class="stars" [(rate)]="currentRate" (click)="clickstars()"></ngb-rating>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</div>
+
+
+<!-- top 10 artists -->
+
+<div class="container" *ngIf="AddMusic==false">
+    <h2>Top 10 Artist List <small>By Melody</small></h2> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+    <button type="button" class="btn btn-primary">Add New Artist</button>
+    <h4></h4>
+    <ul class="responsive-table">
+        <li class="table-header">
+            <div class="col col-1">Artist</div>
+            <div class="col col-2">Date Of Birth</div>
+            <div class="col col-3">Songs</div>
+
+        </li>
+        <li class="table-row" *ngFor="let data of artistData|keyvalue">
+            <div class="col col-1" data-label="Job Id">{{data.value.artist_name}}</div>
+            <div class="col col-2" data-label="Customer Name">{{data.value.artist_dob}}</div>
+            <div class="col col-3" data-label="Amount">{{songsAppend(data.value.songs)}}</div>
+
+        </li>
+
+    </ul>
+</div>
+
+<div *ngIf="AddMusic==true">
+    <app-add></app-add>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <ul class="responsive-table" >
         <li class="table-header">
             <div class="col col-0">Poster</div>
             <div class="col col-2">Song</div>
@@ -73,70 +149,3 @@
             
         </li>
     </ul> -->
-    <table class="table table-striped">
-        <thead class="thead-song">
-          <tr>
-            <th scope="col">Artwork</th>
-            <th scope="col">Song</th>
-            <th scope="col">Date Of Release</th>
-            <th scope="col">Artist</th>
-            <th scope="col">Rating</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let data of songsData|keyvalue">
-            <th scope="row"><img src="http://localhost:3000/{{data.value.song_artwork}}" height="100px" width="100px" alt=""> </th>
-            <td>{{data.value.song_name}}</td>
-            <td>{{data.value.date_of_release}}</td>
-            <td>artist</td>
-            <td><ngb-rating [max]="5" class="stars" [(rate)]="currentRate" (click)="clickstars()"></ngb-rating></td>
-          </tr>
-
-        </tbody>
-      </table>
-</div>
-
-
-<!-- top 10 artists -->
-
-<div class="container" *ngIf="AddMusic==false">
-    <h2>Top 10 Artist List <small>By Melody</small></h2> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-
-    <button type="button" class="btn btn-primary">Add New Artist</button>
-    <h4></h4>
-    <ul class="responsive-table">
-        <li class="table-header">
-            <div class="col col-1">Artist</div>
-            <div class="col col-2">Date Of Birth</div>
-            <div class="col col-3">Songs</div>
-
-        </li>
-        <li class="table-row">
-            <div class="col col-1" data-label="Job Id">42235</div>
-            <div class="col col-2" data-label="Customer Name">John Doe</div>
-            <div class="col col-3" data-label="Amount">$350</div>
-
-        </li>
-        <li class="table-row">
-            <div class="col col-1" data-label="Job Id">42442</div>
-            <div class="col col-2" data-label="Customer Name">Jennifer Smith</div>
-            <div class="col col-3" data-label="Amount">$220</div>
-
-        </li>
-        <li class="table-row">
-            <div class="col col-1" data-label="Job Id">42257</div>
-            <div class="col col-2" data-label="Customer Name">John Smith</div>
-            <div class="col col-3" data-label="Amount">$341</div>
-
-        </li>
-        <li class="table-row">
-            <div class="col col-1" data-label="Job Id">42311</div>
-            <div class="col col-2" data-label="Customer Name">John Carpenter</div>
-            <div class="col col-3" data-label="Amount">$115</div>
-        </li>
-    </ul>
-</div>
-
-<div *ngIf="AddMusic==true">
-    <app-add></app-add>
-</div>

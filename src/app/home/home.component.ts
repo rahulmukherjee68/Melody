@@ -8,9 +8,9 @@ import { ApiService } from 'src/app/api.service';
 })
 export class HomeComponent implements OnInit {
   AddMusic: any;
-  currentRate = 8;
-  artistData:any;
-  songsData:any;
+  currentRate = 0;
+  artistData: any;
+  songsData: any;
   constructor(private api: ApiService) { }
 
   ngOnInit() {
@@ -29,8 +29,8 @@ export class HomeComponent implements OnInit {
       (response) => {
         if (response.status == true) {
           console.log(response);
-          this.artistData=response.artist;
-          this.songsData=response.songs;
+          this.artistData = response.artist;
+          this.songsData = response.songs;
         }
         else {
           alert(response.message);
@@ -38,7 +38,32 @@ export class HomeComponent implements OnInit {
       }
     )
   }
-
+  artistAppend(data) {
+    var i = 0
+    var s = "";
+    for (i = 0; i < data.length; i++) {
+      if (s === "") {
+        s = s + data[i].artist_name;
+      } else {
+        s = s + ", " + data[i].artist_name;
+      }
+    }
+    //console.log(s);
+    return (s);
+  }
+  songsAppend(data) {
+    var i = 0
+    var s = "";
+    for (i = 0; i < data.length; i++) {
+      if (s === "") {
+        s = s + data[i].song_name;
+      } else {
+        s = s + ", " + data[i].song_name;
+      }
+    }
+    //console.log(s);
+    return (s);
+  }
 
 
 }

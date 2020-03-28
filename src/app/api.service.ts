@@ -18,5 +18,11 @@ export class ApiService {
 		headers.append('Access-Control-Allow-Origin', '*');
 		return this.http.get(`${this.url}getAll`, { headers: headers});
   }
-
+  getAllArtist(): Observable<any> 
+  {
+    let headers = new HttpHeaders();
+		headers.append('Content-Type', 'application/json');
+		headers.append('Access-Control-Allow-Origin', '*');
+		return this.http.get(`${this.url}get/artist`, { headers: headers});
+  }
 }
