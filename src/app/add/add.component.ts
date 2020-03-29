@@ -1,12 +1,19 @@
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { ApiService } from 'src/app/api.service';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import {
+  NgbCalendar,
+  NgbDate,
+  NgbDateStruct,
+  NgbInputDatepickerConfig
+} from '@ng-bootstrap/ng-bootstrap';
 
 
 @Component({
   selector: 'app-add',
   templateUrl: './add.component.html',
-  styleUrls: ['./add.component.scss']
+  styleUrls: ['./add.component.scss'],
+  providers: [NgbInputDatepickerConfig] 
 })
 export class AddComponent implements OnInit {
   @Output() notify: EventEmitter<any> = new EventEmitter<any>();
@@ -16,17 +23,21 @@ export class AddComponent implements OnInit {
   selectedItems = [];
   dropdownSettings = {};
   songName: any;
-  songDate: any;
+  songDate: NgbDateStruct;
   artistName: any;
-  artistDate: any;
+  artistDate: NgbDateStruct;
   artistBio: any;
   artistSaved:any;
   songFile: File = null;
 
   constructor(private api: ApiService,
     private route: ActivatedRoute,
-    private router: Router
-  ) { }
+    private router: Router,
+private calendar: NgbCalendar
+  ) {
+
+
+   }
 
   ngOnInit() {
     this.getAllArtist();
@@ -77,13 +88,10 @@ export class AddComponent implements OnInit {
   }
   saveSong() {
     this.artistSaved=false;
-    console.log(this.songName);
-    console.log(this.songDate);
-    console.log(this.songFile);
-    console.log(this.selectedItems);
+    var date=this.songDate.day+" "+this.dateFilter(this.songDate.month)+" "+this.songDate.year;
     const fd = new FormData();
     fd.append('name', this.songName);
-    fd.append('date_of_release', this.songDate);
+    fd.append('date_of_release', date);
     fd.append('artwork', this.songFile, this.songFile.name);
     this.api.addSong(fd).subscribe(
       (response) => {
@@ -108,7 +116,8 @@ export class AddComponent implements OnInit {
 
   }
   saveArtist() {
-    const data = { name: this.artistName, date_of_birth: this.artistDate, Bio: this.artistBio }
+    var date=this.artistDate.day+" "+this.dateFilter(this.artistDate.month)+" "+this.artistDate.year;
+    const data = { name: this.artistName, date_of_birth: date, Bio: this.artistBio }
     this.api.addArtist(data).subscribe(
       (response) => {
         console.log(response);
@@ -122,7 +131,13 @@ export class AddComponent implements OnInit {
             this.artistBio="";
           }
       }
-    )
+    ) 
+  }
+
+  dateFilter(monthNumber){
+    var monthNames = [ 'January', 'February', 'March', 'April', 'May', 'June',
+            'July', 'August', 'September', 'October', 'November', 'December' ];
+        return monthNames[monthNumber - 1];
   }
 
 }
