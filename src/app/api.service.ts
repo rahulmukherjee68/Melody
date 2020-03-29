@@ -25,4 +25,16 @@ export class ApiService {
 		headers.append('Access-Control-Allow-Origin', '*');
 		return this.http.get(`${this.url}get/artist`, { headers: headers});
   }
+  addSong(fd): Observable<any> 
+  {
+    return this.http.post(`${this.url}addsong`,fd);
+  }
+  addMap(map): Observable<any> 
+  {
+    return this.http.post(`${this.url}addMap`,map);
+  }
+  addArtist(data): Observable<any> 
+  {
+    return this.http.post(`${this.url}addArtist`,data);
+  }
 }

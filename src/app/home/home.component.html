@@ -1,19 +1,11 @@
-<nav class="navbar navbar-dark bg-dark">
-    <h4>MELODY</h4>
-    <button class="btn btn-outline-success" type="button">Home</button>
-    <form class="form-inline">
-        <input class="form-control mr-sm-2" type="search" placeholder="Search Your Tunes " aria-label="Search">
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-    </form>
-</nav>
 
 
 <!-- top 10 Music -->
 
-<div class="container" *ngIf="AddMusic==false">
-    <h2>Top 10 Music List <small>By Melody</small></h2> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<div class="container" *ngIf="AddMusic==false" >
+    <h2>Top 10 Music List <small>By Melody</small></h2>
 
-    <button type="button" class="btn btn-primary" (click)="addForm()">Add New Music</button>
+    <button type="button" class="btn btn-primary" (click)="addForm()" >Add New Music</button>
 
 
     <h4></h4>
@@ -71,9 +63,10 @@
     </ul>
 </div>
 
-<div *ngIf="AddMusic==true">
+<div *ngIf="AddMusic==true" (notify)="onNotifyClicked($event)">
     <app-add></app-add>
 </div>
+<child ></child>
 
 
 

@@ -1,5 +1,7 @@
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { ApiService } from 'src/app/api.service';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+
 
 @Component({
   selector: 'app-home',
@@ -11,14 +13,16 @@ export class HomeComponent implements OnInit {
   currentRate = 0;
   artistData: any;
   songsData: any;
-  constructor(private api: ApiService) { }
-
+  constructor(private api: ApiService,
+    private route: ActivatedRoute, 
+    private router: Router
+    ) { }
   ngOnInit() {
     this.AddMusic = false;
     this.getAll();
   }
   addForm() {
-    this.AddMusic = true;
+    this.router.navigate(['/add']);
   }
   clickstars() {
     console.log(true);
@@ -63,6 +67,14 @@ export class HomeComponent implements OnInit {
     }
     //console.log(s);
     return (s);
+  }
+  onNotifyClicked(event){
+    if(event==true)
+    {
+      console.log(event);
+      
+      this.AddMusic = false;
+    }
   }
 
 

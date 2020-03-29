@@ -5,15 +5,17 @@
     <form>
         <div class="form-group">
             <label>Song Name</label>
-            <input type="text" class="form-control" id="song" placeholder="Enter Song Name" required>
+            <input name="songname" type="text" class="form-control" id="song" placeholder="Enter Song Name"
+                [(ngModel)]="songName" required>
         </div>
         <div class="form-group">
             <label>Date Released :- &nbsp;&nbsp;&nbsp;&nbsp;</label>
-            <input type="date" id="datereleased" name="datereleased">
+            <input type="date" id="datereleased" name="datereleased" [(ngModel)]="songDate">
         </div>
         <div class="form-group">
             <label>Artwork &nbsp;&nbsp;&nbsp;&nbsp;</label>
-            <input type="file" id="file" name="file">
+            <input type="file" id="file" name="file"
+                (change)="handleFileInput($event)">
         </div>
         <div class="form-group">
 
@@ -25,10 +27,10 @@
             <h4></h4>
             <label>Artist &nbsp;&nbsp;&nbsp;&nbsp;</label>
             <div style="font-size: initial;">
-                <angular2-multiselect  name="artist-dropdown" [data]="dropdownList" [(ngModel)]="selectedItems"
+                <angular2-multiselect class="multiselect-dropdown"  name="artist-dropdown" [data]="dropdownList" [(ngModel)]="selectedItems"
                     [settings]="dropdownSettings" (onSelect)="onItemSelect($event)"
                     (onDeSelect)="OnItemDeSelect($event)" (onSelectAll)="onSelectAll($event)"
-                    (onDeSelectAll)="onDeSelectAll($event)" >
+                    (onDeSelectAll)="onDeSelectAll($event)">
                 </angular2-multiselect>
             </div>
 
@@ -36,9 +38,9 @@
         </div>
 
         <div style="text-align: center">
-            <button type="button" class="btn btn-info">Cancel</button>
+            <button type="button" class="btn btn-info" (click)="cancel()">Cancel</button>
             &nbsp;&nbsp;&nbsp;&nbsp;
-            <button type="button" class="btn btn-success">Save</button>
+            <button type="button" class="btn btn-success" (click)="saveSong()">Save</button>
         </div>
     </form>
 
@@ -65,27 +67,33 @@
                     <form>
                         <div class="form-group">
                             <label>Artist Name</label>
-                            <input type="text" class="form-control" id="artist" placeholder="Enter Artist Name">
+                            <input type="text" name="artist" class="form-control" id="artist" [(ngModel)]="artistName" placeholder="Enter Artist Name">
                         </div>
 
                         <div class="form-group">
                             <label>Date Of Birth :- &nbsp;&nbsp;&nbsp;&nbsp;</label>
-                            <input type="date" id="dateartist" name="dateartist">
+                            <input type="date" id="dateartist" name="dateartist"
+                            [(ngModel)]="artistDate">
                         </div>
                         <label>Bio :- &nbsp;&nbsp;&nbsp;&nbsp;</label>
                         <div class="form-group">
 
                             <textarea style="padding: 15px 93px;" name="Description" id="Description-contact"
-                                placeholder=" Enter Bio (Max 200 Characters) " autocomplete="off"></textarea>
+                                placeholder=" Enter Bio (Max 200 Characters) " autocomplete="off" [(ngModel)]="artistBio"
+                                ></textarea>
 
                         </div>
                     </form>
+
                 </div>
 
             </div>
             <div class="modal-footer">
+                <div *ngIf="artistSaved==true">
+                    <p>Artist Successfully Saved!</p>
+                </div>
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
+                <button type="button" class="btn btn-primary" (click)="saveArtist()" >Save changes</button>
             </div>
         </div>
     </div>

@@ -10,9 +10,7 @@ input[type=date], input[type=datetime-local], input[type=month], input[type=time
 
 }
 
-* {
-    box-sizing: border-box;
-  }
+
   
   #myInput {
     background-image: url('https://www.google.com/url?sa=i&url=http%3A%2F%2Ficonshow.me%2Fsearch-strong-icon&psig=AOvVaw0z_eeL52TmtnC5Nb9RrNx7&ust=1585407019552000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCPCOgcXzuugCFQAAAAAdAAAAABAT');
@@ -49,14 +47,18 @@ input[type=date], input[type=datetime-local], input[type=month], input[type=time
     padding: 6px 59px;
 
   }
-  c-btn {
-    width: 100%;
-    padding: 5px 10px;
-    cursor: pointer;
-    display: flex;
-    position: relative;
-   // font-size inline-size: auto;
+
+
+:host ::ng-deep {
+  .multiselect-dropdown {
     font-size: initial;
+  }
 }
+
+
+.custom-class-example {
+  font-size: initial!important;
+}
+
 
  
