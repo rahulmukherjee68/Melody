@@ -1,11 +1,9 @@
-
-
 <!-- top 10 Music -->
 
-<div class="container" *ngIf="AddMusic==false" >
+<div class="container" *ngIf="AddMusic==false">
     <h2>Top 10 Music List <small>By Melody</small></h2>
 
-    <button type="button" class="btn btn-primary" (click)="addForm()" >Add New Music</button>
+    <button type="button" class="btn btn-primary" (click)="addForm()">Add New Music</button>
 
 
     <h4></h4>
@@ -30,7 +28,10 @@
                     {{artistAppend(data.value.artist)}}
                 </td>
                 <td>
-                    <ngb-rating [max]="5" class="stars" [(rate)]="currentRate" (click)="clickstars()"></ngb-rating>
+                    <ngb-rating [max]="5" [(ngModel)]="currentRate" class="stars" [(rate)]="currentRate"
+                        (click)="currentRate=currentRate;clickstars(data.value.song_id)"
+                        data-toggle="modal" href="#ignismyModal"></ngb-rating>
+
                 </td>
             </tr>
 
@@ -66,11 +67,43 @@
 <div *ngIf="AddMusic==true" (notify)="onNotifyClicked($event)">
     <app-add></app-add>
 </div>
-<child ></child>
+<child></child>
 
 
 
+<!-- modal -->
 
+<!--Model Popup starts-->
+<div class="container">
+    <div class="row">
+        <div class="modal fade" id="ignismyModal" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label=""><span>×</span></button>
+                    </div>
+
+                    <div class="modal-body">
+
+                        <div class="thank-you-pop">
+                            <img src="http://goactionstations.co.uk/wp-content/uploads/2017/03/Green-Round-Tick.png"
+                                alt="">
+                            <h1>Thank You!</h1>
+                            <p>For Your Rating! Enjoy Our Tunes</p>
+
+
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--Model Popup ends-->
+
+<!-- end of -->
 
 
 

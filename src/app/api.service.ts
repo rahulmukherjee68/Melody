@@ -37,4 +37,8 @@ export class ApiService {
   {
     return this.http.post(`${this.url}addArtist`,data);
   }
+  rateSong(data): Observable<any> 
+  {
+    return this.http.post(`${this.url}rate`,data);
+  }
 }

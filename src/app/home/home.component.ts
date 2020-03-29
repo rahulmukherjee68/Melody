@@ -14,9 +14,9 @@ export class HomeComponent implements OnInit {
   artistData: any;
   songsData: any;
   constructor(private api: ApiService,
-    private route: ActivatedRoute, 
+    private route: ActivatedRoute,
     private router: Router
-    ) { }
+  ) { }
   ngOnInit() {
     this.AddMusic = false;
     this.getAll();
@@ -24,8 +24,23 @@ export class HomeComponent implements OnInit {
   addForm() {
     this.router.navigate(['/add']);
   }
-  clickstars() {
-    console.log(true);
+  clickstars(id) {
+    console.log(id);
+    console.log(this.currentRate);
+    
+    var data={id:id,total_rating:this.currentRate,total_users_rated:1}
+
+    this.api.rateSong(data).subscribe(
+      (response)=>{
+        if(response.status==true)
+        {
+
+          this.currentRate=0;
+          this.getAll();
+          
+        }
+      }
+    )
 
   }
   getAll() {
@@ -68,11 +83,10 @@ export class HomeComponent implements OnInit {
     //console.log(s);
     return (s);
   }
-  onNotifyClicked(event){
-    if(event==true)
-    {
+  onNotifyClicked(event) {
+    if (event == true) {
       console.log(event);
-      
+
       this.AddMusic = false;
     }
   }
