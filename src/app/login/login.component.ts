@@ -1,15 +1,46 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { ApiService } from 'src/app/api.service';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent{
 
-  constructor() { }
+  loginDone = false;
+  username: any;
+  useremail: any;
+  constructor(
+    private api: ApiService,
+    private route: ActivatedRoute,
+    private router: Router
+
+  ) { }
 
   ngOnInit() {
+    this.loginDone = false;
+  }
+  Home() {
+    this.router.navigate(['/home']);
+  }
+  login() {
+    localStorage.setItem('email', this.useremail);
+    var data={name:this.username,email:this.useremail};
+    this.api.addUser(data).subscribe(
+      (response)=>{
+        console.log(response);
+        
+        if(response.status==true)
+        {
+          this.router.navigate(['/home']);
+        }
+        else{
+          alert(response.message);
+        }
+      }
+    )
   }
 
 }

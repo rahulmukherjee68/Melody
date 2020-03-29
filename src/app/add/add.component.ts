@@ -13,7 +13,7 @@ import {
   selector: 'app-add',
   templateUrl: './add.component.html',
   styleUrls: ['./add.component.scss'],
-  providers: [NgbInputDatepickerConfig] 
+  providers: [NgbInputDatepickerConfig]
 })
 export class AddComponent implements OnInit {
   @Output() notify: EventEmitter<any> = new EventEmitter<any>();
@@ -27,21 +27,25 @@ export class AddComponent implements OnInit {
   artistName: any;
   artistDate: NgbDateStruct;
   artistBio: any;
-  artistSaved:any;
+  artistSaved: any;
+  query:any;
   songFile: File = null;
 
   constructor(private api: ApiService,
     private route: ActivatedRoute,
     private router: Router,
-private calendar: NgbCalendar
+    private calendar: NgbCalendar
   ) {
 
 
-   }
+  }
 
   ngOnInit() {
+    if (localStorage.getItem('email') == null) {
+      this.router.navigate(['/login'])
+    }
     this.getAllArtist();
-    this.artistSaved=false;
+    this.artistSaved = false;
   }
   getAllArtist() {
     // this.artistSaved=false;
@@ -87,8 +91,8 @@ private calendar: NgbCalendar
     this.router.navigate(['/home']);
   }
   saveSong() {
-    this.artistSaved=false;
-    var date=this.songDate.day+" "+this.dateFilter(this.songDate.month)+" "+this.songDate.year;
+    this.artistSaved = false;
+    var date = this.songDate.day + " " + this.dateFilter(this.songDate.month) + " " + this.songDate.year;
     const fd = new FormData();
     fd.append('name', this.songName);
     fd.append('date_of_release', date);
@@ -116,28 +120,32 @@ private calendar: NgbCalendar
 
   }
   saveArtist() {
-    var date=this.artistDate.day+" "+this.dateFilter(this.artistDate.month)+" "+this.artistDate.year;
+    var date = this.artistDate.day + " " + this.dateFilter(this.artistDate.month) + " " + this.artistDate.year;
     const data = { name: this.artistName, date_of_birth: date, Bio: this.artistBio }
     this.api.addArtist(data).subscribe(
       (response) => {
         console.log(response);
-        if (response.status === true)
-          {
-            this.artistSaved=true;
-            this.getAllArtist();
-            this.artistName="";
-            this.artistDate=null;
-            this.selectedItems=[];
-            this.artistBio="";
-          }
+        if (response.status === true) {
+          this.artistSaved = true;
+          this.getAllArtist();
+          this.artistName = "";
+          this.artistDate = null;
+          this.selectedItems = [];
+          this.artistBio = "";
+        }
       }
-    ) 
+    )
   }
 
-  dateFilter(monthNumber){
-    var monthNames = [ 'January', 'February', 'March', 'April', 'May', 'June',
-            'July', 'August', 'September', 'October', 'November', 'December' ];
-        return monthNames[monthNumber - 1];
+  dateFilter(monthNumber) {
+    var monthNames = ['January', 'February', 'March', 'April', 'May', 'June',
+      'July', 'August', 'September', 'October', 'November', 'December'];
+    return monthNames[monthNumber - 1];
   }
-
+  Home() {
+    this.router.navigate(['/home']);
+  }
+  search() {
+    this.router.navigate(['/home/'+this.query]);
+  }
 }

@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { ApiService } from 'src/app/api.service';
+
 
 @Component({
   selector: 'app-root',
@@ -8,12 +10,25 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 })
 export class AppComponent {
   title = 'melody-front';
+  loginDone = false;
+  username: any;
+  useremail: any;
+  back:any;
   constructor(
-    private route: ActivatedRoute, 
+    private api: ApiService,
+    private route: ActivatedRoute,
     private router: Router
-    ) { }
 
-    Home(){
-      this.router.navigate(['/home']);
-    }
+  ) { }
+  ngOnInit(): void {
+    this.loginDone = false;
+    this.back=true;
+
+  }
+
+  home() {
+    this.back=false
+    this.router.navigate(['/home']);
+  }
+
 }

@@ -12,14 +12,34 @@ export class HomeComponent implements OnInit {
   AddMusic: any;
   currentRate = 0;
   artistData: any;
+  query: any;
   songsData: any;
+  searchData: any;
   constructor(private api: ApiService,
     private route: ActivatedRoute,
     private router: Router
   ) { }
   ngOnInit() {
+    //localStorage.removeItem('email');
+    this.searchData = false;
+    console.log(localStorage.getItem('email'));
+
+    if (localStorage.getItem('email') == null) {
+      this.router.navigate(['/login'])
+    }
     this.AddMusic = false;
-    this.getAll();
+
+    this.query = this.route.snapshot.params.query;
+    if(this.query==undefined )
+    {
+      this.getAll();
+    }
+    else{
+      this.search();
+    }
+
+
+    
   }
   addForm() {
     this.router.navigate(['/add']);
@@ -27,17 +47,16 @@ export class HomeComponent implements OnInit {
   clickstars(id) {
     console.log(id);
     console.log(this.currentRate);
-    
-    var data={id:id,total_rating:this.currentRate,total_users_rated:1}
+
+    var data = { id: id, total_rating: this.currentRate, total_users_rated: 1 }
 
     this.api.rateSong(data).subscribe(
-      (response)=>{
-        if(response.status==true)
-        {
+      (response) => {
+        if (response.status == true) {
 
-          this.currentRate=0;
+          this.currentRate = 0;
           this.getAll();
-          
+
         }
       }
     )
@@ -83,12 +102,23 @@ export class HomeComponent implements OnInit {
     //console.log(s);
     return (s);
   }
-  onNotifyClicked(event) {
-    if (event == true) {
-      console.log(event);
-
-      this.AddMusic = false;
-    }
+  home() {
+    this.getAll()
+  }
+  search() {
+    console.log(this.query);
+    this.api.search({ query: this.query }).subscribe(
+      (response) => {
+        if (response.status == true) {
+          console.log(response);
+          this.songsData = response.songs;
+          this.searchData = true
+        }
+        else {
+          alert(response.message);
+        }
+      }
+    )
   }
 
 

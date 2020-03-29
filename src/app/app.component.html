@@ -1,10 +1,22 @@
-<nav class="navbar navbar-dark bg-dark">
-    <h4>MELODY</h4>
-    <button class="btn btn-outline-success" type="button" (click)="Home()">Home</button>
-    <form class="form-inline">
-        <input class="form-control mr-sm-2" type="search" placeholder="Search Your Tunes " aria-label="Search">
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+<!-- <div class="log-form" *ngIf="loginDone==false">
+    <h2>Welcome to Melody</h2>
+    <form>
+        <input name="name" type="text" [(ngModel)]="username" title="username" placeholder="name" required />
+        <input name="email" type="email" [(ngModel)]="useremail" title="username" placeholder="email"required/>
+        <button type="button" class="btn" (click)="login()">Login</button>
     </form>
-</nav>
+</div> -->
+
+
+<!-- <video autoplay muted loop id="myVideo">
+    <source src="../assets/back.mp4" type="video/mp4">
+  </video> -->
+
+<div class="bg" *ngIf="back==true">
+    <div style="text-align: center; padding: 53px 311px">
+        <h1 style="text-align: start;; color: lightblue; padding: 2px 7px;">Melody Welcome You</h1>
+       <a (click)="home()"> <img height ="100px"src="https://media.acceledent.com/wp-content/uploads/2017/04/19093935/Get-Started-Button-02.png" alt=""></a>
+    </div>
+</div>
 
 <router-outlet></router-outlet>

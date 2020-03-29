@@ -6,6 +6,7 @@ import { AddComponent } from './add/add.component';
 
 
 const routes: Routes = [
+  { path: 'home/:query', component: HomeComponent},
   { path: 'home', component: HomeComponent},
   { path: 'login', component: LoginComponent},
   { path: 'add', component: AddComponent}

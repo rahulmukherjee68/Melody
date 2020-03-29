@@ -41,4 +41,12 @@ export class ApiService {
   {
     return this.http.post(`${this.url}rate`,data);
   }
+  addUser(data): Observable<any> 
+  {
+    return this.http.post(`${this.url}user`,data);
+  }
+  search(data): Observable<any> 
+  {
+    return this.http.post(`${this.url}getAll`,data);
+  }
 }

@@ -1,3 +1,11 @@
+<nav class="navbar navbar-dark bg-dark">
+    <h4>MELODY</h4>
+    <button class="btn btn-outline-success" type="button" (click)="Home()">Home</button>
+    <form class="form-inline">
+        <input name="query" [(ngModel)]="query" class="form-control mr-sm-2" type="search" placeholder="Search Your Tunes " aria-label="Search">
+        <button class="btn btn-outline-success my-2 my-sm-0" (click)="search()" type="button">Search</button>
+    </form>
+</nav>
 <h2>Adding New Music</h2>
 
 
@@ -93,14 +101,14 @@
 
                         <div class="form-group">
                             <label>Date Of Birth :- &nbsp;&nbsp;&nbsp;&nbsp;</label>
-                            <input placeholder="dd/mm/yyyy"
-                            name="d2" #c2="ngModel" [(ngModel)]="artistDate" ngbDatepicker #d2="ngbDatepicker">
-            
-                        <button class="btn" (click)="d2.toggle()" type="button">
-                            <img height="40px" width="40px"
-                                src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTgxyJmUim6L9Im8SNByBvMo-kKO27Ys-Qy0z7uzJIfqmWxFbrh"
-                                alt="">
-                        </button>
+                            <input placeholder="dd/mm/yyyy" name="d2" #c2="ngModel" [(ngModel)]="artistDate"
+                                ngbDatepicker #d2="ngbDatepicker">
+
+                            <button class="btn" (click)="d2.toggle()" type="button">
+                                <img height="40px" width="40px"
+                                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTgxyJmUim6L9Im8SNByBvMo-kKO27Ys-Qy0z7uzJIfqmWxFbrh"
+                                    alt="">
+                            </button>
                         </div>
                         <label>Bio :- &nbsp;&nbsp;&nbsp;&nbsp;</label>
                         <div class="form-group">
