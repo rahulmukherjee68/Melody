@@ -1,0 +1,84 @@
+<nav class="navbar navbar-dark bg-dark">
+    <h4>MELODY</h4>
+    <button class="btn btn-outline-success" type="button" [routerLink]="['/home']">Home</button>
+    <button class="btn btn-outline-success" type="button" [routerLink]="['/artist']"
+        routerLinkActive="router-link-active">Artist</button>
+
+
+    <form class="form-inline">
+        <input name="query" [(ngModel)]="query" class="form-control mr-sm-2" type="search"
+            placeholder="Search Your Tunes " aria-label="Search">
+        <button class="btn btn-outline-success my-2 my-sm-0" (click)="search()" type="button">Search</button>
+    </form>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbs&nbsp;&nbsp;&nbsp;&nbsp;
+    <button (click)="logout()"> <img (click)="logout()" src="https://www.nicepng.com/png/detail/518-5189122_logout-transparent-logout-button-icon.png" alt="logout" height="42" width="42">
+    </button>
+</nav>
+
+
+
+
+<!-- Team -->
+<section id="team" class="pb-5">
+    <div class="container">
+        <h5 class="section-title h1">Our Artist</h5>
+        <div class="row">
+            <!-- Team member -->
+            <div class="col-xs-12 col-sm-6 col-md-4" *ngFor="let data of artistList|keyvalue">
+                <div class="image-flip" ontouchstart="this.classList.toggle('hover');">
+                    <div class="mainflip">
+                        <div class="frontside">
+                            <div class="card">
+                                <div class="card-body text-center">
+                                    <p><img class=" img-fluid"
+                                            src="https://image.shutterstock.com/image-vector/musician-user-icon-600w-722665978.jpg"
+                                            alt="card image"></p>
+                                    <h4 class="card-title" style="font-size: 35px;">{{data.value.artist_name}}</h4>
+                                    <h6>Date of birth:- {{data.value.artist_dob}}</h6>
+                                    <p class="card-text">{{data.value.artist_bio}}</p>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="backside">
+                            <div class="card">
+                                <div class="card-body text-center mt-4">
+                                    <h4 class="card-title" style="font-size: 35px;">Song:-</h4>
+                                    
+                                         <p>{{songsAppend(data.value.songs)}}</p>
+                                    
+                                
+                                    <ul class="list-inline">
+                                        <li class="list-inline-item">
+                                            <a class="social-icon text-xs-center" target="_blank" href="#">
+                                                <i class="fa fa-facebook"></i>
+                                            </a>
+                                        </li>
+                                        <li class="list-inline-item">
+                                            <a class="social-icon text-xs-center" target="_blank" href="#">
+                                                <i class="fa fa-twitter"></i>
+                                            </a>
+                                        </li>
+                                        <li class="list-inline-item">
+                                            <a class="social-icon text-xs-center" target="_blank" href="#">
+                                                <i class="fa fa-skype"></i>
+                                            </a>
+                                        </li>
+                                        <li class="list-inline-item">
+                                            <a class="social-icon text-xs-center" target="_blank" href="#">
+                                                <i class="fa fa-google"></i>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</section>
+<!-- Team -->

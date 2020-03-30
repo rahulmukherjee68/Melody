@@ -10,6 +10,7 @@ import { LoginComponent } from './login/login.component';
 import { FormsModule }   from '@angular/forms';
 import { AddComponent } from './add/add.component';
 import { AngularMultiSelectModule } from 'angular2-multiselect-dropdown';
+import { ArtistComponent } from './artist/artist.component';
   
 
 
@@ -19,7 +20,8 @@ import { AngularMultiSelectModule } from 'angular2-multiselect-dropdown';
     AppComponent,
     HomeComponent,
     LoginComponent,
-    AddComponent
+    AddComponent,
+    ArtistComponent
   ],
   imports: [
     BrowserModule,

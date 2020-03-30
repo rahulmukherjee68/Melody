@@ -28,7 +28,7 @@ export class AddComponent implements OnInit {
   artistDate: NgbDateStruct;
   artistBio: any;
   artistSaved: any;
-  query:any;
+  query: any;
   songFile: File = null;
 
   constructor(private api: ApiService,
@@ -91,26 +91,40 @@ export class AddComponent implements OnInit {
     this.router.navigate(['/home']);
   }
   saveSong() {
-    this.artistSaved = false;
-    var date = this.songDate.day + " " + this.dateFilter(this.songDate.month) + " " + this.songDate.year;
-    const fd = new FormData();
-    fd.append('name', this.songName);
-    fd.append('date_of_release', date);
-    fd.append('artwork', this.songFile, this.songFile.name);
-    this.api.addSong(fd).subscribe(
-      (response) => {
-        if (response.status === true) {
-          var map = { id: response.id, artist: this.selectedItems }
-          this.api.addMap(map).subscribe(
-            (response) => {
-              console.log(response);
-              if (response.status === true)
-                alert("data saved")
-            }
-          )
-        }
+    console.log(this.songName);
+    console.log(this.songDate);
+    console.log(this.artistSaved);
+    
+    if(this.songName==undefined||this.songName===""||this.songDate==undefined||this.selectedItems.length==0||this.songFile==null)
+    {
+      alert("All Fields are the required Fields!Please fill it")
+    }
+   else{
+    
+      this.artistSaved = false;
+      var date = this.songDate.day + " " + this.dateFilter(this.songDate.month) + " " + this.songDate.year;
+      const fd = new FormData();
+      fd.append('name', this.songName);
+      fd.append('date_of_release', date);
+      if(this.songFile!=null){
+      fd.append('artwork', this.songFile, this.songFile.name);
       }
-    )
+      this.api.addSong(fd).subscribe(
+        (response) => {
+          if (response.status === true) {
+            var map = { id: response.id, artist: this.selectedItems }
+            this.api.addMap(map).subscribe(
+              (response) => {
+                console.log(response);
+                if (response.status === true)
+                  alert("data saved")
+                this.router.navigate(['/home']);
+              }
+            )
+          }
+        }
+      )
+      }
 
 
 
@@ -120,21 +134,27 @@ export class AddComponent implements OnInit {
 
   }
   saveArtist() {
-    var date = this.artistDate.day + " " + this.dateFilter(this.artistDate.month) + " " + this.artistDate.year;
-    const data = { name: this.artistName, date_of_birth: date, Bio: this.artistBio }
-    this.api.addArtist(data).subscribe(
-      (response) => {
-        console.log(response);
-        if (response.status === true) {
-          this.artistSaved = true;
-          this.getAllArtist();
-          this.artistName = "";
-          this.artistDate = null;
-          this.selectedItems = [];
-          this.artistBio = "";
+    if (this.artistName == null || this.artistDate == null) {
+      alert('artist name and date of birth is required please fill it!');
+    }
+    else {
+      var date = this.artistDate.day + " " + this.dateFilter(this.artistDate.month) + " " + this.artistDate.year;
+      const data = { name: this.artistName, date_of_birth: date, Bio: this.artistBio }
+      this.api.addArtist(data).subscribe(
+        (response) => {
+          console.log(response);
+          if (response.status === true) {
+            this.artistSaved = true;
+            this.getAllArtist();
+            this.artistName = "";
+            this.artistDate = null;
+            this.selectedItems = [];
+            this.artistBio = "";
+
+          }
         }
-      }
-    )
+      )
+    }
   }
 
   dateFilter(monthNumber) {
@@ -146,6 +166,10 @@ export class AddComponent implements OnInit {
     this.router.navigate(['/home']);
   }
   search() {
-    this.router.navigate(['/home/'+this.query]);
+    this.router.navigate(['/home/' + this.query]);
+  }
+  logout(){
+    localStorage.removeItem('email');
+    this.router.navigate(['/login']);
   }
 }

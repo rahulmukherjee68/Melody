@@ -49,4 +49,8 @@ export class ApiService {
   {
     return this.http.post(`${this.url}getAll`,data);
   }
+  getArtistOrderByName(): Observable<any> 
+  {
+    return this.http.get(`${this.url}getAll/getArtistOrderByName`);
+  }
 }

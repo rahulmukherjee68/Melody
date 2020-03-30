@@ -2,8 +2,14 @@
     <h4>MELODY</h4>
     <button class="btn btn-outline-success" type="button" (click)="Home()">Home</button>
     <form class="form-inline">
-        <input name="query" [(ngModel)]="query" class="form-control mr-sm-2" type="search" placeholder="Search Your Tunes " aria-label="Search">
+        <input name="query" [(ngModel)]="query" class="form-control mr-sm-2" type="search"
+            placeholder="Search Your Tunes " aria-label="Search">
         <button class="btn btn-outline-success my-2 my-sm-0" (click)="search()" type="button">Search</button>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbs&nbsp;&nbsp;&nbsp;&nbsp;
+        <button (click)="logout()"> <img (click)="logout()"
+                src="https://www.nicepng.com/png/detail/518-5189122_logout-transparent-logout-button-icon.png"
+                alt="logout" height="42" width="42">
+        </button>
     </form>
 </nav>
 <h2>Adding New Music</h2>
@@ -17,7 +23,8 @@
                 [(ngModel)]="songName" required>
         </div>
         <div class="form-group">
-            <label>Date Released :- &nbsp;&nbsp;&nbsp;&nbsp;</label>
+            <label>Date
+                Released :- &nbsp;&nbsp;&nbsp;&nbsp;</label>
             <input class="form-group" placeholder="yyyy-mm-dd" name="dp" [(ngModel)]="songDate" ngbDatepicker
                 [footerTemplate]="footerTemplate" #d="ngbDatepicker">
 
@@ -48,8 +55,7 @@
                 </angular2-multiselect>
             </div>
 
-            <h4></h4>
-            <label>date &nbsp;&nbsp;&nbsp;&nbsp;</label>
+
 
 
 

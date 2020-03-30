@@ -15,12 +15,14 @@ export class HomeComponent implements OnInit {
   query: any;
   songsData: any;
   searchData: any;
+  noData:any;
   constructor(private api: ApiService,
     private route: ActivatedRoute,
     private router: Router
   ) { }
   ngOnInit() {
     //localStorage.removeItem('email');
+    this.noData=false
     this.searchData = false;
     console.log(localStorage.getItem('email'));
 
@@ -30,16 +32,15 @@ export class HomeComponent implements OnInit {
     this.AddMusic = false;
 
     this.query = this.route.snapshot.params.query;
-    if(this.query==undefined )
-    {
+    if (this.query == undefined) {
       this.getAll();
     }
-    else{
+    else {
       this.search();
     }
 
 
-    
+
   }
   addForm() {
     this.router.navigate(['/add']);
@@ -67,8 +68,12 @@ export class HomeComponent implements OnInit {
       (response) => {
         if (response.status == true) {
           console.log(response);
-          this.artistData = response.artist;
-          this.songsData = response.songs;
+          if (response.artist.length == 0 && response.songs.length) {
+              this.noData=true
+          } else {
+            this.artistData = response.artist;
+            this.songsData = response.songs;
+          }
         }
         else {
           alert(response.message);
@@ -119,6 +124,11 @@ export class HomeComponent implements OnInit {
         }
       }
     )
+  }
+
+  logout(){
+    localStorage.removeItem('email');
+    this.router.navigate(['/login']);
   }
 
 
