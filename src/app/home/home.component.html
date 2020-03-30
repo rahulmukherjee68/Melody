@@ -46,6 +46,9 @@
                     <ngb-rating [max]="5" [(ngModel)]="currentRate" class="stars" [(rate)]="currentRate"
                         (click)="currentRate=currentRate;clickstars(data.value.song_id)" data-toggle="modal"
                         href="#ignismyModal"></ngb-rating>
+                    <pre>Global-Rating :- {{data.value.song_rating}}/5
+                        <ngb-rating [max]="5" class="starsglobal" [(rate)]="data.value.song_rating"></ngb-rating>
+                         </pre>
 
                 </td>
             </tr>
